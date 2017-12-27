@@ -1,22 +1,15 @@
 require('./bootstrap')
 import Vue from 'vue'
 import VueResource from 'vue-resource'
-import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.css'
 import App from './App'
 import router from './router'
 import store from './store'
 
+require('./assets/semantic/dist/semantic.min.js')
+require('./assets/semantic/dist/semantic.min.css')
+
 
 Vue.use(VueResource)
-Vue.use(VueMaterial)
-
-Vue.material.registerTheme('default', {
-  	primary: 'black',
-  	accent: 'red',
-  	warn: 'red',
-  	background: 'teal'
-})
 
 Vue.config.productionTip = false
 

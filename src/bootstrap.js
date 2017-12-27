@@ -11,7 +11,10 @@ window.qs = require('qs')
 
 try {
   window.$ = window.jQuery = require('jquery');
-  require('bootstrap-sass');
+  //require('bootstrap-sass');
+
+
+	
 } catch (e) {}
 
 /**

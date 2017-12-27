@@ -1,81 +1,38 @@
 <template>
-    <div id="app" class="phone-viewport">
-        <md-toolbar>
-            <md-button class="md-icon-button" @click="toggleLeftSidenav">
-                <md-icon>menu</md-icon>
-            </md-button>
-
-            <h2 class="md-title" style="flex: 1">Default</h2>
-
-            <md-button class="md-icon-button">
-                <md-icon>favorite</md-icon>
-            </md-button>
-            <md-avatar class="md-small">
-                <img src="./assets/avatar.png" alt="People">
-            </md-avatar>
-
-        </md-toolbar>
-
-       
-
-        <md-sidenav class="md-left" ref="leftSidenav">
-            <md-toolbar class="md-account-header">
-                <md-list>
-                    <md-list-item class="md-avatar-list">
-                        <md-avatar class="md-large">
-                            <img src="https://placeimg.com/64/64/people/8" alt="People">
-                        </md-avatar>
-
-                        <span style="flex: 1"></span>
-
-                        <md-avatar>
-                            <img src="https://placeimg.com/40/40/people/3" alt="People">
-                        </md-avatar>
-
-                        <md-avatar>
-                            <img src="https://placeimg.com/40/40/people/4" alt="People">
-                        </md-avatar>
-                    </md-list-item>
-
-                    <md-list-item>
-                        <div class="md-list-text-container">
-                            <span>John Doe</span>
-                            <span>johndoe@email.com</span>
-                        </div>
-
-                        <md-button class="md-icon-button md-list-action">
-                            <md-icon>arrow_drop_down</md-icon>
-                        </md-button>
-                    </md-list-item>
-                </md-list>
-            </md-toolbar>
-
-            <md-list>
-                <md-list-item @click="$refs.sidenav.toggle()" class="md-primary">
-                    <md-icon>insert_drive_file</md-icon> <span>My files</span>
-                </md-list-item>
-
-                <md-list-item @click="$refs.sidenav.toggle()">
-                    <md-icon>people</md-icon> <span>Shared with me</span>
-                </md-list-item>
-
-                <md-list-item @click="$refs.sidenav.toggle()">
-                    <md-icon>access_time</md-icon> <span>Recent</span>
-                </md-list-item>
-
-                <md-list-item @click="$refs.sidenav.toggle()">
-                    <md-icon>start</md-icon> <span>Starred</span>
-                </md-list-item>
-
-                <md-list-item @click="$refs.sidenav.toggle()">
-                    <md-icon>delete</md-icon> <span>Trash</span>
-                </md-list-item>
-            </md-list>
-          </md-sidenav>
-
-        <!-- page content -->
-        <router-view></router-view>
-    </div>
+    <main id="app">
+        <div class="ui top attached demo menu">
+            <a class="item">
+                <i class="sidebar icon"></i>
+                Menu
+            </a>
+        </div>
+        <div class="ui bottom attached segment pushable">
+            <div class="ui inverted labeled icon left inline vertical sidebar menu" style="">
+                <a class="item">
+                    <i class="home icon"></i>
+                    Home
+                </a>
+                <a class="item">
+                    <i class="block layout icon"></i>
+                    Topics
+                </a>
+                <a class="item">
+                    <i class="smile icon"></i>
+                    Friends
+                </a>
+                <a class="item">
+                    <i class="calendar icon"></i>
+                    History
+                </a>
+            </div>
+            <div class="pusher">
+                <div class="ui basic segment">
+                    <h3 class="ui header">Application Content</h3>
+                    <router-view></router-view>
+                </div>
+            </div>
+        </div>
+    </main>
 </template>
 
 <script>
@@ -87,29 +44,24 @@
             SidebarComponent,
             TopnavComponent
         },
+        data: function(){
+            return {
+                context: this
+            }
+        },
         mounted: function() {
-        
+            var id = '#'+this.context.$el.getAttribute('id');
+            $(id+' .ui.sidebar')
+            .sidebar({
+                context: $(id+' .bottom.segment')
+            })
+            .sidebar('attach events', id+' .menu .item');
         },
         methods: {
-            toggleLeftSidenav() {
-                this.$refs.leftSidenav.toggle();
-            },
-            toggleRightSidenav() {
-                this.$refs.rightSidenav.toggle();
-            },
-            closeRightSidenav() {
-                this.$refs.rightSidenav.close();
-            },
-            open(ref) {
-                console.log('Opened: ' + ref);
-            },
-            close(ref) {
-                console.log('Closed: ' + ref);
-            }
+            
         }
     }
 </script>
 
-<style>
-
+<style scoped>
 </style>
