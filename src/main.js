@@ -1,13 +1,10 @@
 require('./bootstrap')
+
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import App from './App'
 import router from './router'
 import store from './store'
-
-require('./assets/semantic/dist/semantic.min.js')
-require('./assets/semantic/dist/semantic.min.css')
-
 
 Vue.use(VueResource)
 
@@ -19,3 +16,5 @@ new Vue({
   router,
   render: h => h(App)
 })
+
+require('./assets/gentelella/build/js/custom.js');

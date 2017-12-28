@@ -8,7 +8,6 @@
  */
 
 (function($) {
-
   // Cached vars
   var _iCheck = 'iCheck',
     _iCheckHelper = _iCheck + '-helper',
@@ -16,7 +15,7 @@
     _radio = 'radio',
     _checked = 'checked',
     _unchecked = 'un' + _checked,
-    _disabled = 'disabled',a
+    _disabled = 'disabled',
     _determinate = 'determinate',
     _indeterminate = 'in' + _determinate,
     _update = 'update',
