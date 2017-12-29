@@ -6,9 +6,17 @@
 	    <link rel="shortcut icon" type="image/png" href="/favicon.ico"/>
 	    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
 		<link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
   	<body class="nav-md">
     	<div id="app"></div>
+    	<script type="text/javascript">
+    		window.onload = function(){    
+			    window.addEventListener('message', function(e) {
+					console.log(e.data);
+				}, false);
+			}
+    	</script>
     	<!-- built files will be auto injected -->
     </body>
 </html>

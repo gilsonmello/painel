@@ -17,37 +17,37 @@ try {
 	
   	require('bootstrap/dist/css/bootstrap.min.css');  	
 
-  	require('./assets/gentelella/vendors/nprogress/nprogress.css');
-  	require('./assets/gentelella/vendors/iCheck/skins/flat/green.css');
-  	require('./assets/gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css');
-  	require('./assets/gentelella/vendors/jqvmap/dist/jqvmap.min.css');
-  	require('./assets/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css');
-	require('./assets/gentelella/build/css/custom.min.css');
+  	require('gentelella/vendors/nprogress/nprogress.css');
+  	require('gentelella/vendors/iCheck/skins/flat/green.css');
+  	require('gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css');
+  	require('gentelella/vendors/jqvmap/dist/jqvmap.min.css');
+  	require('gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css');
+	require('gentelella/build/css/custom.min.css');
 
 	
-	require('./assets/gentelella/vendors/fastclick/lib/fastclick.js');
-	require('./assets/gentelella/vendors/nprogress/nprogress.js');
-	require('./assets/gentelella/vendors/Chart.js/dist/Chart.min.js');
-	require('./assets/gentelella/vendors/gauge.js/dist/gauge.min.js');
-	require('./assets/gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js');
-	require('./assets/gentelella/vendors/iCheck/icheck.js');
-	require('./assets/gentelella/vendors/skycons/skycons.js');
-	require('./assets/gentelella/vendors/Flot/jquery.flot.js');
-	require('./assets/gentelella/vendors/Flot/jquery.flot.pie.js');
-	require('./assets/gentelella/vendors/Flot/jquery.flot.time.js');
-	require('./assets/gentelella/vendors/Flot/jquery.flot.stack.js');
-	require('./assets/gentelella/vendors/Flot/jquery.flot.resize.js');
-	require('./assets/gentelella/vendors/flot.orderbars/js/jquery.flot.orderBars.js');
-	require('./assets/gentelella/vendors/flot-spline/js/jquery.flot.spline.min.js');
-	require('./assets/gentelella/vendors/flot.curvedlines/curvedLines.js');
+	require('gentelella/vendors/fastclick/lib/fastclick.js');
+	require('gentelella/vendors/nprogress/nprogress.js');
+	require('gentelella/vendors/Chart.js/dist/Chart.min.js');
+	require('gentelella/vendors/gauge.js/dist/gauge.min.js');
+	require('gentelella/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js');
+	require('gentelella/vendors/iCheck/icheck.js');
+	require('gentelella/vendors/skycons/skycons.js');
+	require('gentelella/vendors/Flot/jquery.flot.js');
+	require('gentelella/vendors/Flot/jquery.flot.pie.js');
+	require('gentelella/vendors/Flot/jquery.flot.time.js');
+	require('gentelella/vendors/Flot/jquery.flot.stack.js');
+	require('gentelella/vendors/Flot/jquery.flot.resize.js');
+	require('gentelella/vendors/flot.orderbars/js/jquery.flot.orderBars.js');
+	require('gentelella/vendors/flot-spline/js/jquery.flot.spline.min.js');
+	require('gentelella/vendors/flot.curvedlines/curvedLines.js');
 	require('datejs');
 
-	require('./assets/gentelella/vendors/jqvmap/dist/jquery.vmap.js');
-	require('./assets/gentelella/vendors/jqvmap/dist/maps/jquery.vmap.world.js');
-	require('./assets/gentelella/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js');
+	require('gentelella/vendors/jqvmap/dist/jquery.vmap.js');
+	require('gentelella/vendors/jqvmap/dist/maps/jquery.vmap.world.js');
+	require('gentelella/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js');
 	window.moment = require('moment');
-	require('./assets/gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js');
-	//require('./assets/gentelella/build/js/custom.js');	
+	require('gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js');
+	//require('gentelella/build/js/custom.js');	
 
 	
 } catch (e) {
