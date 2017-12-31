@@ -1,3 +1,37 @@
+window.getCookie = function(name){
+	var cookies = window.document.cookie;
+	var prefix = name + "=";
+    var begin = cookies.indexOf("; " + prefix);
+	if (begin == -1) {
+ 		begin = cookies.indexOf(prefix);         
+        if (begin != 0) {
+            return null;
+        }
+ 
+    } else {
+        begin += 2;
+    }
+    var end = cookies.indexOf(";", begin);
+    if (end == -1) {
+        end = cookies.length;                        
+    }
+    return unescape(cookies.substring(begin + prefix.length, end));
+};
+
+window.deleteCookie = function(name) {
+   	if (getCookie(name)) {
+      	document.cookie = name + "=" + "; expires=Thu, 01-Jan-70 00:00:01 GMT";
+      	return true;
+   	}
+   	return false;
+}
+
+const tokenData = window.getCookie("access_token");
+if(tokenData == null) {
+	alert('Acesse a área do cliente clique em Painel');
+	window.location.href = "http://localhost:8000/";
+	throw new Error("Something went badly wrong!");
+}
 
 window._ = require('lodash')
 
@@ -10,14 +44,20 @@ window.qs = require('qs')
  */
 
 try {
+	//window.localStorage.setItem('authUser', JSON.stringify({name: 'adlksjf'}));
   	window.$ = window.jQuery = require('jquery');
 
   	require('bootstrap'); 
 
+	require('jquery.inputmask/dist/jquery.inputmask.bundle.js');
+    //require('bootstrap-datepicker');
+    window.toastr = require('toastr');
+    require('toastr/build/toastr.min.css');
 	
   	require('bootstrap/dist/css/bootstrap.min.css');  	
 
   	require('gentelella/vendors/nprogress/nprogress.css');
+  	require('gentelella/vendors/animate.css/animate.min.css');
   	require('gentelella/vendors/iCheck/skins/flat/green.css');
   	require('gentelella/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css');
   	require('gentelella/vendors/jqvmap/dist/jqvmap.min.css');
@@ -54,6 +94,7 @@ try {
 	console.log(e)
 }
 
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -61,22 +102,6 @@ try {
  */
 
 window.axios = require('axios')
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-
-/**
- * Next we will register the CSRF Token as a common header with Axios so that
- * all outgoing HTTP requests automatically have it attached. This is just
- * a simple convenience so we don't have to attach every token manually.
- */
-
-let token = document.head.querySelector('meta[name="csrf-token"]')
-
-if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content
-} else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token')
-}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
