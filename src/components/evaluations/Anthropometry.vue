@@ -3,7 +3,7 @@
 </template>
 <script>
 	export default {
-		name: 'anthropometries',
+		name: 'Anthropometry',
 		watch: {
 			$route: function(to, from){
 

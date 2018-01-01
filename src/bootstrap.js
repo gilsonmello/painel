@@ -1,3 +1,19 @@
+window.enviroment = "production";
+window.apiDomain = (window.enviroment == "production") ? "http://pi.mirandafitness.com.br" : "http://localhost:8000";
+window.url = (window.enviroment == "production") ? "http://www.painel.mirandafitness.com.br" : "http://localhost:8080";
+
+function getParamsUrl() {
+    var s1 = location.search.substring(1, location.search.length).split('&'),
+        r = {}, s2, i;
+    for (i = 0; i < s1.length; i += 1) {
+        s2 = s1[i].split('=');
+        r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+    }
+    return r;
+};
+
+window.QueryString = getParamsUrl();
+
 window.getCookie = function(name){
 	var cookies = window.document.cookie;
 	var prefix = name + "=";
@@ -26,11 +42,17 @@ window.deleteCookie = function(name) {
    	return false;
 }
 
-const tokenData = window.getCookie("access_token");
-if(tokenData == null) {
+const params = (QueryString.access_token) ? QueryString.access_token : null;
+
+export const authUser = window.localStorage.getItem('authUser') == "" ? null : JSON.parse(window.localStorage.getItem('authUser'));
+
+if(authUser == null && params == null) {
 	alert('Acesse a área do cliente clique em Painel');
-	window.location.href = "http://localhost:8000/";
+	window.location.href = window.apiDomain;
 	throw new Error("Something went badly wrong!");
+}else if(QueryString.access_token){
+	window.localStorage.setItem('access_token', QueryString.access_token);
+	window.history.pushState({url: "/"}, '', '/#/');
 }
 
 window._ = require('lodash')
@@ -102,6 +124,18 @@ try {
  */
 
 window.axios = require('axios')
+
+export var tokenData = window.localStorage.getItem('access_token') == null ? JSON.parse(window.localStorage.getItem('authUser')).access_token : window.localStorage.getItem('access_token');
+export var access_token = (tokenData != null) ? tokenData : null;
+
+window.addEventListener('storage',function(e){
+    if((event.key == "authUser" && e.newValue == null) || e.storageArea.length == 0){
+        tokenData = "";
+        access_token = "";
+        window.location.href = window.apiDomain;
+    }
+});
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

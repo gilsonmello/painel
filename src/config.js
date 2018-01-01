@@ -1,21 +1,20 @@
-export const apiDomain = 'http://localhost:8000'
-export const loginUrl = apiDomain+'/oauth/token'
-export const userUrl = apiDomain+'/api/user'
+import {access_token} from './bootstrap'
+
+export const loginUrl = window.apiDomain+'/oauth/token';
+
+export const userUrl = window.apiDomain+'/api/user';
 
 export const getHeader = function () {
-  	const tokenData = window.getCookie("access_token");
-  	var token = tokenData != null ? tokenData : null;	
- 	const headers = {
+  	const headers = {
 	    'Accept': 'application/json',
-	    'Authorization': 'Bearer ' + token
+	    'Authorization': 'Bearer ' + access_token
   	}
   	return headers
 }
-
 export const rt = {
 	users: {
-		create: apiDomain+'/users',
-		edit: apiDomain+'/{id}/user',
-		logged: apiDomain+'/users/logged'
+		create: window.apiDomain+'/users',
+		edit: window.apiDomain+'/{id}/user',
+		logged: window.apiDomain+'/users/logged'
 	}
 };

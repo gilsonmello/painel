@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import HomeComponent from '@/components/HomeComponent'
 import Login from '@/components/Login'
-import anthropometries from '@/components/evaluations/anthropometries'
+import Anthropometry from '@/components/evaluations/Anthropometry'
 
 Vue.use(Router)
 
@@ -20,7 +20,7 @@ export default new Router({
 	      	name: 'anthropometries',
 	      	props: true,
 			meta: {requiresAuth: true},
-	      	component: anthropometries
+	      	component: Anthropometry
 	    }
   	]
 })
