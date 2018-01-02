@@ -5,5 +5,10 @@ import actions from './actions'
 export default{
 	state,
 	mutations,
-	actions
+	actions,
+	getters: {
+	    auth : state => {
+	      	return state.authUser
+	    }
+  	}
 }

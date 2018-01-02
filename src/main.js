@@ -23,12 +23,13 @@ toastr.options.timeOut = 3000;
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-const vm = new Vue({
+var vm = new Vue({
     el: '#app',
     router,
     store,
     data: function(){
         return {
+            loading: true,
             access_token: window.localStorage.getItem('access_token') == null ? JSON.parse(window.localStorage.getItem('authUser')).access_token : window.localStorage.getItem('access_token'),
         }
     },
@@ -54,11 +55,13 @@ const vm = new Vue({
                 window.location.href = window.apiDomain;
                 throw new Error("Something went badly wrong!");
             }
+            window.localStorage.removeItem('authUser');
             toastr.info('Para acessar é necessário fazer login!');
-        })
+        })        
+        const authUser = JSON.parse(window.localStorage.getItem('authUser'));
+        this.$store.dispatch('setUserObject', authUser)
     }
 })
-
 
 
 router.onReady(() => {    
@@ -103,7 +106,8 @@ var interval = setInterval(function(){
 }, 100);
 
 
-router.beforeEach((to, from, next, abort) => {
+router.beforeEach((to, from, next) => {
+    vm.loading = true;
     //Verificando se o token ainda é válido
     var authUser = window.localStorage.getItem('authUser');
     if(authUser != ""){
@@ -136,8 +140,40 @@ router.beforeEach((to, from, next, abort) => {
     next(false);
 });
 
+$('body').on('click', function(){
+    
+});
+
 
 router.afterEach((to, from) => {
+    delete require.cache[require.resolve('gentelella/build/js/custom.min.js')];
+    sidebar = $('#sidebar');
+    interval = setInterval(function(){
+        if(sidebar.length > 0){
+            require('gentelella/build/js/custom.min.js');
+            clearInterval(interval);
+            
+            var controller = 'home'
+            if(to.fullPath != "/"){
+                controller = to.fullPath.split('/')[1]
+            }
+            var action = to.fullPath.split('/')[2] != undefined ? to.fullPath.split('/')[2] : "" ;
+            
+            interval = setInterval(function(){
+                if($('[controller="'+controller+'"]').length > 0){
+                    clearInterval(interval)
+                    $('[controller]').removeClass('active')
+                    $('[action]').removeClass('active');
+                    //$('[action]').parent().fadeOut('slow');
+                    $('[controller="'+controller+'"]').addClass('active');
+                    $('[action="'+action+'"]').addClass('active');
+                    $('[action="'+action+'"]').parent().addClass('active');
+                    $('[action="'+action+'"]').parent().parent().fadeIn('slow');
+                }
+            }, 10)
+        }
+        sidebar = $('#sidebar');
+    }, 10);
     /*if(to.name == 'login' && from.name == "home"){
         delete require.cache[require.resolve('gentelella/build/js/custom.min.js')];
         sidebar = $('body .main_container');
@@ -153,4 +189,5 @@ router.afterEach((to, from) => {
     $('body').animate({
         scrollTop: height
     },  500);
+
 });

@@ -51,6 +51,7 @@ if(authUser == null && params == null) {
 	window.location.href = window.apiDomain;
 	throw new Error("Something went badly wrong!");
 }else if(QueryString.access_token){
+  window.localStorage.removeItem('authUser');
 	window.localStorage.setItem('access_token', QueryString.access_token);
 	window.history.pushState({url: "/"}, '', '/#/');
 }
