@@ -19,17 +19,17 @@ window.getCookie = function(name){
 	var prefix = name + "=";
     var begin = cookies.indexOf("; " + prefix);
 	if (begin == -1) {
- 		begin = cookies.indexOf(prefix);         
+ 		begin = cookies.indexOf(prefix);
         if (begin != 0) {
             return null;
         }
- 
+
     } else {
         begin += 2;
     }
     var end = cookies.indexOf(";", begin);
     if (end == -1) {
-        end = cookies.length;                        
+        end = cookies.length;
     }
     return unescape(cookies.substring(begin + prefix.length, end));
 };
@@ -70,14 +70,14 @@ try {
 	//window.localStorage.setItem('authUser', JSON.stringify({name: 'adlksjf'}));
   	window.$ = window.jQuery = require('jquery');
 
-  	require('bootstrap'); 
+  	require('bootstrap');
 
 	require('jquery.inputmask/dist/jquery.inputmask.bundle.js');
     //require('bootstrap-datepicker');
     window.toastr = require('toastr');
     require('toastr/build/toastr.min.css');
-	
-  	require('bootstrap/dist/css/bootstrap.min.css');  	
+
+  	require('bootstrap/dist/css/bootstrap.min.css');
 
   	require('gentelella/vendors/nprogress/nprogress.css');
   	require('gentelella/vendors/animate.css/animate.min.css');
@@ -87,7 +87,7 @@ try {
   	require('gentelella/vendors/bootstrap-daterangepicker/daterangepicker.css');
 	require('gentelella/build/css/custom.min.css');
 
-	
+
 	require('gentelella/vendors/fastclick/lib/fastclick.js');
 	require('gentelella/vendors/nprogress/nprogress.js');
 	require('gentelella/vendors/Chart.js/dist/Chart.min.js');
@@ -110,9 +110,9 @@ try {
 	require('gentelella/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js');
 	window.moment = require('moment');
 	require('gentelella/vendors/bootstrap-daterangepicker/daterangepicker.js');
-	//require('gentelella/build/js/custom.js');	
+	//require('gentelella/build/js/custom.js');
 
-	
+
 } catch (e) {
 	console.log(e)
 }

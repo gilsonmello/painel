@@ -15,6 +15,7 @@ export const rt = {
 	users: {
 		create: window.apiDomain+'/users',
 		edit: window.apiDomain+'/{id}/user',
-		logged: window.apiDomain+'/users/logged'
+		logged: window.apiDomain+'/users/logged',
+		logout: window.apiDomain+'/users/logout'
 	}
 };

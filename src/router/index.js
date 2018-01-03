@@ -21,6 +21,21 @@ export default new Router({
 	      	props: true,
 			meta: {requiresAuth: true},
 	      	component: Anthropometry
+	    },
+        {
+	      	path: '/evaluations/bioimpedance',
+	      	name: 'bioimpedance',
+	      	props: true,
+			meta: { requiresAuth: true },
+	      	component: Anthropometry
+	    },
+        {
+	      	path: '/evaluations/parq',
+	      	name: 'parq',
+	      	props: true,
+			meta: { requiresAuth: true },
+	      	component: Anthropometry
 	    }
-  	]
+  	],
+    linkExactActiveClass: 'active'
 })

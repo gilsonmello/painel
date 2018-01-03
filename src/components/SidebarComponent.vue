@@ -40,6 +40,12 @@
                                 <li>
                                     <router-link action="anthropometries" :to="{ name: 'anthropometries' }">Antropometria</router-link>
                                 </li>
+								<li>
+                                    <router-link action="bioimpedance" :to="{ name: 'bioimpedance' }">Bioimpedância</router-link>
+                                </li>
+								<li>
+                                    <router-link action="parq" :to="{ name: 'parq' }">PAR'Q</router-link>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -49,7 +55,7 @@
         <!-- /sidebar menu -->
 
         <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
+        <!-- <div class="sidebar-footer hidden-small">
             <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
             </a>
@@ -62,7 +68,7 @@
             <a data-toggle="tooltip" data-placement="top" title="" href="login.html" data-original-title="Logout">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
-        </div>
+        </div> -->
         <!-- /menu footer buttons -->
       </div>
     </div>
@@ -90,7 +96,7 @@
             ])
         },
         mounted: function(){
-            
+
         }
     }
 </script>

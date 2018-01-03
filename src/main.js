@@ -11,7 +11,7 @@ import {loginUrl, userUrl, getHeader, rt} from './config'
 Vue.use(VueResource)
 
 var callbackToastr = function(){
-    
+
 };
 
 toastr.options.onHidden = function () {
@@ -57,14 +57,14 @@ var vm = new Vue({
             }
             window.localStorage.removeItem('authUser');
             toastr.info('Para acessar é necessário fazer login!');
-        })        
+        })
         const authUser = JSON.parse(window.localStorage.getItem('authUser'));
         this.$store.dispatch('setUserObject', authUser)
     }
 })
 
 
-router.onReady(() => {    
+router.onReady(() => {
     const authUser = window.localStorage.getItem('authUser');
     //Se o usuário não estiver logado, retorno para a home
     if(authUser == null || authUser == ""){
@@ -92,11 +92,11 @@ router.onReady(() => {
             window.location.href = window.apiDomain;
             throw new Error("Something went badly wrong!");
         })
-    }    
+    }
 });
 
 var sidebar = $('body .main_container');
-    
+
 var interval = setInterval(function(){
     if(sidebar.length > 0){
         require('gentelella/build/js/custom.min.js');
@@ -107,7 +107,6 @@ var interval = setInterval(function(){
 
 
 router.beforeEach((to, from, next) => {
-    vm.loading = true;
     //Verificando se o token ainda é válido
     var authUser = window.localStorage.getItem('authUser');
     if(authUser != ""){
@@ -126,7 +125,7 @@ router.beforeEach((to, from, next) => {
             const authUser = JSON.parse(window.localStorage.getItem('authUser'));
             if(authUser){
                 next()
-            }else{            
+            }else{
                 toastr.info('Para acessar é necessário fazer login!');
             }
         }
@@ -140,11 +139,6 @@ router.beforeEach((to, from, next) => {
     next(false);
 });
 
-$('body').on('click', function(){
-    
-});
-
-
 router.afterEach((to, from) => {
     delete require.cache[require.resolve('gentelella/build/js/custom.min.js')];
     sidebar = $('#sidebar');
@@ -152,23 +146,46 @@ router.afterEach((to, from) => {
         if(sidebar.length > 0){
             require('gentelella/build/js/custom.min.js');
             clearInterval(interval);
-            
+
             var controller = 'home'
             if(to.fullPath != "/"){
                 controller = to.fullPath.split('/')[1]
             }
             var action = to.fullPath.split('/')[2] != undefined ? to.fullPath.split('/')[2] : "" ;
-            
+
+            /*  Configurações para ativar e desativar opções na sidebar
+                Fará um loop até encontrar a sidebar
+                Caso encontre, fecha todos dropdowns da sidebar
+                E procura o dropdown correto para deixá-lo ativo
+            */
             interval = setInterval(function(){
+                //Caso encontre
                 if($('[controller="'+controller+'"]').length > 0){
+                    //Paro a execução do loop
                     clearInterval(interval)
+                    //Fecho todos os dropdowns pai
                     $('[controller]').removeClass('active')
+                    //Fecho todos os dropdowns filhos
                     $('[action]').removeClass('active');
-                    //$('[action]').parent().fadeOut('slow');
-                    $('[controller="'+controller+'"]').addClass('active');
-                    $('[action="'+action+'"]').addClass('active');
-                    $('[action="'+action+'"]').parent().addClass('active');
-                    $('[action="'+action+'"]').parent().parent().fadeIn('slow');
+
+                    /*  Se o menu para mobile estiver aberto
+                        Adiciono somente a classe active-sm
+                        Para o dropdown não aparecer aberto
+                    */
+                    if($('body').hasClass('nav-sm')){
+                        $('[controller="'+controller+'"]').addClass('active-sm');
+                        $('[action="'+action+'"]').addClass('active-sm');
+                        $('[action="'+action+'"]').parent().css({
+                            'border-right': '5px solid #1ABB9C'
+                        });
+                        $('[action="'+action+'"]').parent().addClass('active-sm');
+                    }else{
+                        //Deixo o dropdown de acordo com a url executada aberto
+                        $('[controller="'+controller+'"]').addClass('active');
+                        $('[action="'+action+'"]').addClass('active');
+                        $('[action="'+action+'"]').parent().addClass('active');
+                        $('[action="'+action+'"]').parent().parent().fadeIn('slow');
+                    }
                 }
             }, 10)
         }
@@ -185,9 +202,9 @@ router.afterEach((to, from) => {
             sidebar = $('body .main_container');
         }, 100);
     }*/
-    var height = $('#box').prop('scrollHeight');
-    $('body').animate({
-        scrollTop: height
-    },  500);
+    // var height = $('#box').prop('scrollHeight');
+    // $('body').animate({
+    //     scrollTop: height
+    // },  500);
 
 });
