@@ -97,14 +97,34 @@
                 </ul>
             </nav>
         </div>
-        <modal-component @interface="submit" :method="method" :action="action"></modal-component>
+        <modal-form-component @interface="submit" :buttons="buttons" :method="method" :action="action">
+            <h4 slot="header-form">
+                Perfil (Editar)
+            </h4>
+            <div class="modal-body" slot="modal-body">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Nome" v-model="name">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="E-mail" v-model="email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </modal-form-component>
     </div>
 </template>
 
 <script>
     import {mapState, mapGetters} from 'vuex'
     import {loginUrl, getHeader, userUrl, rt} from '../config'
-    import ModalComponent from './ModalComponent'
+    import ModalFormComponent from './ModalFormComponent'
 	export default{
         computed: {
             ...mapState({
@@ -115,7 +135,7 @@
             ])
         },
 		components: {
-            ModalComponent
+            'modal-form-component': ModalFormComponent
 		},
 		mounted: function(){
 
@@ -155,6 +175,16 @@
                 action: rt.users.edit,
                 profile_img: window.apiDomain+"/bower_components/admin-lte/dist/img/user2-160x160.jpg",
                 access_token: window.localStorage.getItem('access_token') == null ? JSON.parse(window.localStorage.getItem('authUser')).access_token : window.localStorage.getItem('access_token'),
+                buttons: {
+                    submit: {
+                        text: 'Editar'
+                    },
+                    dismiss: {
+                        text: 'Fechar'
+                    },
+                },
+                name: this.$store.getters.auth.name,
+                email: this.$store.getters.auth.email,
 			}
 		}
 	}

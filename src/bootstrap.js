@@ -1,4 +1,4 @@
-window.enviroment = "production";
+window.enviroment = "local";
 window.apiDomain = (window.enviroment == "production") ? "http://pi.mirandafitness.com.br" : "http://localhost:8000";
 window.url = (window.enviroment == "production") ? "http://www.painel.mirandafitness.com.br" : "http://localhost:8080";
 
