@@ -14,7 +14,7 @@ export const getHeader = function () {
 export const rt = {
 	users: {
 		create: window.apiDomain+'/users',
-		edit: window.apiDomain+'/{id}/user',
+		update: window.apiDomain+'/painel/profiles/{id}',
 		logged: window.apiDomain+'/users/logged',
 		logout: window.apiDomain+'/users/logout'
 	}

@@ -126,6 +126,10 @@ try {
 
 window.axios = require('axios')
 
+window.axios.defaults.headers.common = {
+    'X-Requested-With': 'XMLHttpRequest'
+};
+
 export var tokenData = window.localStorage.getItem('access_token') == null ? JSON.parse(window.localStorage.getItem('authUser')).access_token : window.localStorage.getItem('access_token');
 export var access_token = (tokenData != null) ? tokenData : null;
 

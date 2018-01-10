@@ -59,6 +59,7 @@ var vm = new Vue({
             toastr.info('Para acessar é necessário fazer login!');
         })
         const authUser = JSON.parse(window.localStorage.getItem('authUser'));
+        this.$store.dispatch('clearAuthUser')
         this.$store.dispatch('setUserObject', authUser)
     }
 })
@@ -78,11 +79,13 @@ router.onReady(() => {
         }).then(response => {
             var data = response.data;
             window.localStorage.setItem('authUser', JSON.stringify({
+                id: data.id,
                 access_token: access_token,
                 email: data.email,
                 name: data.name
             }));
             vm.$store.dispatch('setUserObject', {
+                id: data.id,
                 email: data.email,
                 name: data.name
             })
